@@ -3,14 +3,13 @@ from pyspark.sql.functions import col, to_date, count, desc
 
 # -------------------------------------------------------------------------
 # PROJECT: Retail Lakehouse Pipeline
-# EXAM TOPIC: Ingestion (Auto Loader) -> Quality (Expectations) -> Aggregation
 # -------------------------------------------------------------------------
 
 # Path to Databricks Public Sample Data
 SOURCE_PATH = "/databricks-datasets/structured-streaming/events/"
 
 # --- BRONZE LAYER ---
-# Goal: Ingest raw JSON files efficiently using Auto Loader
+# Ingest raw JSON files efficiently using Auto Loader
 @dlt.table(
     comment="Raw streaming data ingested via Auto Loader",
     table_properties={"quality": "bronze"}
@@ -24,7 +23,7 @@ def bronze_events():
     )
 
 # --- SILVER LAYER ---
-# Goal: Clean data and enforce Data Quality
+# Clean data and enforce Data Quality
 @dlt.table(
     comment="Cleaned events with parsed dates",
     partition_cols=["event_date"], 
@@ -43,7 +42,7 @@ def silver_events():
     )
 
 # --- GOLD LAYER ---
-# Goal: Aggregate for Business Reporting
+# Aggregate for Business Reporting
 @dlt.table(
     comment="Daily summary of user actions",
     table_properties={"quality": "gold"}
