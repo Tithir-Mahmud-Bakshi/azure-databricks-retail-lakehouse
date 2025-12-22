@@ -1,3 +1,6 @@
+# NOTE: This is the Delta Live Tables (DLT) version of the pipeline.
+# For the Azure Data Factory orchestrated version, see 'Run_Retail_Pipeline'.
+
 import dlt
 from pyspark.sql.functions import col, to_date, count, desc
 
